@@ -24,7 +24,7 @@ const CarouselItems = ({ caroData }) => {
           country.
         </p>
         <Link to="/about">
-          <button className="btn btn-secondary mt-4 mr-5">About Us</button>
+          <button className="btn btn-primary mt-4 mr-5">About Us</button>
         </Link>
       </div>
 
