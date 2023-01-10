@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Carousel from './Carousel';
+import Country from './Country';
 import ServiceData from './ServiceData';
 import Skills from './Skills';
 
@@ -28,6 +29,10 @@ const Home = () => {
         <div >
           <Skills></Skills>
         </div>
+      </section>
+
+      <section className="flex flex-col items-center mt-5">
+        <Country></Country>
       </section>
         </div>
     );
