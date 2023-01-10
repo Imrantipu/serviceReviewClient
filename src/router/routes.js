@@ -30,6 +30,7 @@ export const router = createBrowserRouter([
             `http://localhost:5000/service/${params.id}`
           ),
       },
+      
       {
         path: "/about",
         element: <About></About>,
