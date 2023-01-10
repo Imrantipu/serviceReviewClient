@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Carousel from './Carousel';
 import ServiceData from './ServiceData';
+import Skills from './Skills';
 
 const Home = () => {
     const servicesData = useLoaderData();
@@ -20,6 +21,12 @@ const Home = () => {
               Show All Services
             </button>
           </Link>
+        </div>
+      </section>
+
+      <section>
+        <div >
+          <Skills></Skills>
         </div>
       </section>
         </div>
