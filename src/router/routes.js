@@ -7,6 +7,7 @@ import Home from "../pages/Home/Home";
 import Service from "../pages/Home/Service";
 import Services from "../pages/Home/Services";
 import Login from "../pages/Login/Login";
+import MyReviews from "../pages/MyReviews/MyReviews";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 
@@ -46,6 +47,15 @@ export const router = createBrowserRouter([
           fetch(
             `http://localhost:5000/addservice/${params.id}`
           ),
+      },
+
+      {
+        path: "/review",
+        element: (
+          <PrivateRoute>
+           <MyReviews></MyReviews>
+          </PrivateRoute>
+        ),
       },
       
       {

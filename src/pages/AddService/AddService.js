@@ -12,10 +12,9 @@ const AddService = () => {
     const form = event.target;
     const name = `${form.firstName.value} ${form.lastName.value}`;
     const email = user?.email || "unregistered";
-    // const phone = form.phone.value;
     const message = form.message.value;
 
-    const order = {
+    const review = {
       service: _id,
       serviceName: title,
       price,
@@ -27,15 +26,14 @@ const AddService = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("genius-token")}`,
       },
-      body: JSON.stringify(order),
+      body: JSON.stringify(review),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          alert("Order placed successfully");
+          alert("Review added  successfully");
           form.reset();
         }
       })
@@ -43,11 +41,11 @@ const AddService = () => {
   };
 
   return (
-    <div>
+    <div className='mt-9'>
       <form onSubmit={handlePlaceOrder}>
-        <h2 className="text-4xl">Your Review: {title}</h2>
-        <h4 className="text-3xl">Price: {price}</h4>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <h2 className="text-4xl mt-9">Your Review: {title}</h2>
+        <h4 className="text-3xl mt-5">Price: {price}</h4>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-9">
           <input
             name="firstName"
             type="text"
@@ -78,7 +76,7 @@ const AddService = () => {
         </div>
         <textarea
           name="message"
-          className="textarea textarea-bordered h-24 w-full"
+          className="textarea textarea-bordered h-24 w-full mt-9"
           placeholder="Your Message"
           required
         ></textarea>
