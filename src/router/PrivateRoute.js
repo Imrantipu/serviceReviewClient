@@ -7,7 +7,6 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    //   return <Spinner animation="border" variant="primary" />;
     return (
       <div class="flex justify-center items-center">
         <div
