@@ -8,6 +8,7 @@ import Service from "../pages/Home/Service";
 import Services from "../pages/Home/Services";
 import Login from "../pages/Login/Login";
 import MyReviews from "../pages/MyReviews/MyReviews";
+import NewService from "../pages/NewService/NewService";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 
@@ -20,20 +21,20 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
         loader: () =>
-          fetch("http://localhost:5000/home"),
+          fetch("https://y-two-red.vercel.app/home"),
       },
       {
         path: "/services",
         element: <Services></Services>,
         loader: () =>
-          fetch("http://localhost:5000/services"),
+          fetch("https://y-two-red.vercel.app/services"),
       },
       {
         path: "/service/:id",
         element: <Service></Service>,
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/service/${params.id}`
+            `https://y-two-red.vercel.app/service/${params.id}`
           ),
       },
       {
@@ -45,7 +46,7 @@ export const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/addservice/${params.id}`
+            `https://y-two-red.vercel.app/addservice/${params.id}`
           ),
       },
 
@@ -54,6 +55,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
            <MyReviews></MyReviews>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/addservice",
+        element: (
+          <PrivateRoute>
+          <NewService></NewService>
           </PrivateRoute>
         ),
       },

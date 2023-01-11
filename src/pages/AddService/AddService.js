@@ -1,7 +1,6 @@
-
-import { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthProvider';
+import { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 
 const AddService = () => {
   const { _id, title, price } = useLoaderData();
@@ -22,7 +21,7 @@ const AddService = () => {
       email,
       message,
     };
-    fetch("http://localhost:5000/addservice", {
+    fetch("https://y-two-red.vercel.app/addservice", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,7 +40,7 @@ const AddService = () => {
   };
 
   return (
-    <div className='mt-9'>
+    <div className="mt-9">
       <form onSubmit={handlePlaceOrder}>
         <h2 className="text-4xl mt-9">Your Review: {title}</h2>
         <h4 className="text-3xl mt-5">Price: {price}</h4>
@@ -80,8 +79,8 @@ const AddService = () => {
           placeholder="Your Message"
           required
         ></textarea>
-        <div className='flex flex-col items-center mt-5'> 
-        <input className="btn btn-primary" type="submit" value="Add Review" /> 
+        <div className="flex flex-col items-center mt-5">
+          <input className="btn btn-primary" type="submit" value="Add Review" />
         </div>
       </form>
     </div>
