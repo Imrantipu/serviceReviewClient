@@ -20,10 +20,23 @@ const Orders = () => {
             })
     }, [user?.email, logOut])
 
-    
-
-    
-
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure, you want to cancel this order');
+        if (proceed) {
+            fetch(`http://localhost:5000/review/${id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        alert('deleted successfully');
+                        const remaining = reviews.filter(odr => odr._id !== id);
+                        setReviews(remaining);
+                    }
+                })
+        }
+      }
+      
     return (
         <div>
             <h2 className="text-5xl flex flex-col items-center mt-5">You have {reviews.length} Reviews</h2>
@@ -31,8 +44,6 @@ const Orders = () => {
                 <table className="table w-full">
                     <thead>
                         <tr>
-                            <th>
-                            </th>
                             <th>Service Name</th>
                             <th>Price</th>
                             <th>Review</th>
@@ -41,10 +52,11 @@ const Orders = () => {
                     </thead>
                     <tbody>
                         {
-                            reviews.map(order => <MyReviewsRow
-                                key={order._id}
-                                order={order}
-                            
+                            reviews.map(review => <MyReviewsRow
+                                key={review._id}
+                                review={review}
+                                handleDelete={handleDelete}
+                                
                             ></MyReviewsRow>)
                         }
                     </tbody>
