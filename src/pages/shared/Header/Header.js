@@ -1,7 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from './../../../context/AuthProvider';
 
 const Header = () => {
+
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
+  const menuItems = (
+    <>
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/services">Our Services</Link></li>
+      <li><Link to="/about">About Us</Link></li>
+      <li><Link to="/blog">Blog</Link></li>
+      {user?.email ? (
+        <>
+          <li><Link to="/review">My Reviews</Link></li>
+          <li><Link to="/addservice">Add Service</Link></li>
+          <li className="font-semibold"><button onClick={handleLogOut} className="btn-ghost">Log out</button></li>
+        </>
+      ) : (
+        <>
+         <li><Link to="/login">Login</Link></li>
+         <li><Link to="/signup">Sign Up</Link></li>
+        </>
+      )}
+    </>
+  );
   return (
     <div>
       <div className="navbar bg-base-200 ">
@@ -26,16 +55,9 @@ const Header = () => {
             <ul
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52"
-            >
-              <li>
-                <Link to="/">Home</Link>
-                <Link to="/services">Our Services</Link>
-                <Link to="/about">About Us</Link>
-                <Link to="/blog">Blog</Link>
-                <Link to="/addservice">Add Service</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
-              </li>
+          >
+                {menuItems}
+              
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-2xl">
@@ -44,15 +66,7 @@ const Header = () => {
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link to="/">Home</Link>
-              <Link to="/services">Our Services</Link>
-              <Link to="/about">About Us</Link>
-              <Link to="/blog">Blog</Link>
-              <Link to="/addservice">Add Service</Link>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </li>
+          {menuItems}
           </ul>
         </div>
       </div>
